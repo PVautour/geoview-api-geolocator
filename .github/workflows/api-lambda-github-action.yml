@@ -16,15 +16,16 @@ jobs:
           sudo apt-get install -y awscli
       - name: Zip Lambda function code
         run: |
-          cd /path/to/api-lambda
-          zip -r /path/to/api-lambda.zip *
+          cd cloud-formation/api-lambda
+          zip -r api-lambda.zip *
       - name: Deploy Lambda function
         run: |
           aws cloudformation deploy \
-            --template-file /path/to/template.yml \
+            --template-file ./cloud-formation/cloudformation.yml \
             --stack-name my-lambda-stack \
             --capabilities CAPABILITY_IAM
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+          AWS_DEFAULT_REGION: ca-central-1

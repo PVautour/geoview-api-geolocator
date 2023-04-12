@@ -4,7 +4,7 @@ Resources:
     Properties:
       Code:
         ZipFile: !Sub |
-          $(< /path/to/api-lambda.zip)
+          $(< cloudformation/api-lambda/api-lambda.zip)
       Handler: index.handler
       Role: arn:aws:iam::123456789012:role/MyLambdaRole
-      Runtime: nodejs14.x
+      Runtime: python3.9
