@@ -1,4 +1,30 @@
 Resources:
+  # LambdaExecutionRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Version: "2012-10-17"
+  #       Statement:
+  #         - Effect: Allow
+  #           Principal:
+  #             Service:
+  #               - lambda.amazonaws.com
+  #           Action:
+  #             - sts:AssumeRole
+  #     Path: "/"
+  #     ManagedPolicyArns:
+  #       - "arn:aws:iam::aws:policy/service-role/PascalTestAWSLambdaBasicExecutionRole"
+  #     Policies:
+  #       - PolicyName: lambda-policy
+  #         PolicyDocument:
+  #           Version: "2012-10-17"
+  #           Statement:
+  #             - Effect: Allow
+  #               Action:
+  #                 - logs:CreateLogGroup
+  #                 - logs:CreateLogStream
+  #                 - logs:PutLogEvents
+  #               Resource: "arn:aws:logs:*:*:*"
   APILambda:
     Type: AWS::Lambda::Function
     Properties:
@@ -6,5 +32,5 @@ Resources:
         ZipFile: !Sub |
           $(< cloudformation/api-lambda/api-lambda.zip)
       Handler: index.handler
-      Role: arn:aws:iam::123456789012:role/MyLambdaRole
+      Role: arn:aws:iam::006288227511:role/service-role/pvautour-s3-to-openSearch-role-uldmr6xt
       Runtime: python3.9
