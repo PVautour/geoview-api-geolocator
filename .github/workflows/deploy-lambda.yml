@@ -1,0 +1,27 @@
+name: Deploy Lambda Function
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+        pip3 install awscli --upgrade --user
+
+    - name: Zip code
+      run: |
+        zip -r function.zip . -i cloud-formation/api-lambda/*
+    - name: Deploy function
+      run: |
+        aws lambda update-function-code --function-name your-function-name --zip-file fileb://function.zip
