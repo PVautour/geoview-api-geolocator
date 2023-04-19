@@ -22,6 +22,8 @@ jobs:
     - name: Zip code
       run: |
         (cd cloud-formation/api-lambda; zip -r ../api-lambda.zip *;)
+
     - name: Deploy function
       run: |
-        aws lambda update-function-code --function-name your-function-name --zip-file fileb://cloud-formation/api-lambda.zip
+        aws cloudformation deploy --template-file cloud-formation/cloudformation.yml --stack-name pascal-test-geolocator-api --capabilities CAPABILITY_IAM
+        aws lambda update-function-code --function-name pascal-test-geolocator-api --zip-file fileb://cloud-formation/api-lambda.zip

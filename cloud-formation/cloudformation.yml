@@ -29,8 +29,7 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
       Code:
-        ZipFile: !Sub |
-          $(< cloudformation/api-lambda/api-lambda.zip)
+        ZipFile: ${file("${function.zip}")}
       Handler: index.handler
       Role: arn:aws:iam::006288227511:role/service-role/pvautour-s3-to-openSearch-role-uldmr6xt
       Runtime: python3.9
