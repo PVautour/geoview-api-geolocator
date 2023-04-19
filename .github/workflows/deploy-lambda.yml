@@ -25,5 +25,5 @@ jobs:
 
     - name: Deploy function
       run: |
-        aws cloudformation deploy --template-file cloud-formation/cloudformation.yml --stack-name pascal-test-geolocator-api --capabilities CAPABILITY_IAM
+        aws cloudformation deploy --template-file cloud-formation/cloudformation.yml --stack-name pascal-test-geolocator-api --capabilities CAPABILITY_IAM --region ca-central-1
         aws lambda update-function-code --function-name pascal-test-geolocator-api --zip-file fileb://cloud-formation/api-lambda.zip
