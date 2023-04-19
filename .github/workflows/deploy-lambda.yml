@@ -28,6 +28,6 @@ jobs:
         aws cloudformation deploy --template-file cloud-formation/cloudformation.yml --stack-name pascal-test-geolocator-api --capabilities CAPABILITY_IAM --region ca-central-1
         aws lambda update-function-code --function-name pascal-test-geolocator-api --zip-file fileb://cloud-formation/api-lambda.zip
       env: 
-        aws_access_key_id: ${{ secrets.aws_access_key_id}}
-        aws_secret_access_key: ${{ secrets.aws_secret_access_key}}
-        aws_session_token: ${{ secrets.aws_session_token}}
+        AWS_ACCESS_KEY_ID: ${{ secrets.aws_access_key_id}}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.aws_secret_access_key}}
+        AWS_SESSION_TOKEN: ${{ secrets.aws_session_token}}
